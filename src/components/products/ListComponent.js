@@ -3,6 +3,7 @@ import { getList } from "../../api/productApi";
 import useCustomMove from "../../hooks/useCustomMove";
 import PageComponent from "../common/PageComponent";
 import FetchingModal from "../common/FetchingModal";
+import useCustomLogin from "../../hooks/useCustomLogin";
 
 import { API_SERVER_HOST } from "../../api/productApi";
 const host = API_SERVER_HOST;
@@ -21,20 +22,25 @@ const initState = {
 };
 
 const ListComponent = () => {
+  const { exceptionHandle } = useCustomLogin();
   const { page, size, refresh, moveToList, moveToRead } = useCustomMove();
   console.log("page:", page, "size", size);
 
+  //severData는 나중에 사용
   const [serverData, setServerData] = useState(initState);
+  //for FetchingModal
   const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
     setFetching(true);
 
-    getList({ page, size }).then((data) => {
-      console.log(data);
-      setServerData(data);
-      setFetching(false);
-    });
+    getList({ page, size })
+      .then((data) => {
+        console.log(data);
+        setServerData(data);
+        setFetching(false);
+      })
+      .catch((err) => exceptionHandle(err));
   }, [page, size, refresh]);
 
   return (

@@ -1,12 +1,8 @@
 import "./App.css";
-import Score from "./comp/Score";
-// import Injung from "./comp/Injung";
-// import JongGunTeamLeader from "./comp/JongGunTeamLeader";
-// import Juheon from "./comp/Juheon";
-import Ban from "./Score/Ban";
-
+import { RouterProvider } from "react-router-dom";
+import root from "./router/root";
 function App() {
-  return <Score />;
+  return <RouterProvider router={root}></RouterProvider>;
 }
 
 export default App;

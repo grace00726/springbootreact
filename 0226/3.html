@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //1번
+      const f = (i, j) => i + j;
+
+      const res = f(2, 3);
+      console.log(res);
+
+      //2번
+      const g = (i) => {
+        //고차함수 higher order function
+        const v = (j) => i + j;
+        return v; // == return (j) => i + j;
+      };
+
+      console.log(g(3)(2)); // closure(클로저)
+
+      //함수형 언어에는 함수가 1급 객체(시민), first citizon
+      //함수를 변수에 저장 가능
+      //함수를 다른 함수의 인자로 전달 가능
+      //함수를 다른 함수에서 반환 가능
+
+      const mult5 = (i) => i * 5;
+      const mult15 = (i) => i * 15;
+      const mult25 = (i) => i * 25;
+
+      const k = (i, f) => {
+        return f(i);
+      };
+
+      var result = [mult5, mult15, mult25].map((i) => k(3, i));
+      console.log(result);
+    </script>
+  </body>
+</html>

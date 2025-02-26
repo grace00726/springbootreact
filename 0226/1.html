@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        function getData() {
+          return new Promise(function (resolve, reject) {
+            //   reject(new Error("요청 실패!!!"));
+            resolve("사랑");
+          });
+        }
+
+        //Promise는 클래스. 2개의 인자를 받는 함수 타입의 인자 받는다.
+        //resolve , reject 둘 다 함수
+        //성공하면 resolve 실패하면 reject 호출
+
+        getData()
+          .then((i) => console.log(i + "입니다!!"))
+          .catch(function (e) {
+            console.log(e);
+          });
+    </script>
+  </body>
+</html>
